@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--JQUERY-->
+	  <script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	  <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	  <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!--Iconos-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!--Tabla-->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+	  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <title>Lista Estudiantes</title>
+
+  </head>
+  <body>
+
+   
+ 
+      
+ 
+ 
+ 
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark shadow-sm">
+            <h5 class="my-0 font-weight-normal">
+              <img src="Imagenes/LogoEscudo.png" alt="" style="width:60px; margin: -10px 0 -10px -5px;">
+            </h5>
+            <nav class="my-2 my-md-0 mr-md-3 mr-md-auto"> <!-- BOTONES DE LA IZQUIERDA -->
+              <a class="p-2 text-white" href="CrudDocentes.html">Docentes</a>
+              <a class="p-2 text-white" href="CrudEstudiantes.html">Estudiantes</a>
+              <a class="p-2 text-white" href="CrudMaterias.html">Materias</a>
+              <a class="p-2 text-white" href="CrudGrado.html">Grados</a>
+            </nav>
+            <nav class="my-2 my-md-0 mr-md-3"> <!-- BOTONES DE LA DERECHA -->
+              <!--<a class="p-2 text-white" href="#">Eventos</a>-->
+              <!--<a class="p-2 text-white" href="#">Tareas</a>-->
+              <!--<a class="p-2 text-white" href="#">Informacion</a>-->
+              <!--<a class="p-2 text-white usuario">Aqui va el nombre del admin</a>-->
+            </nav>
+            <!--<a class="btn btn-outline-primary" href="#">Iniciar sesion</a>-->
+          </div>
+
+          <div>
+
+            
+          </div>
+
+          <div id="Docentes">
+ <p> {{materiaseleccion}} </p>
+ <p>{{tipo_identificacion}}  </p>
+              <div class="mx-auto col-sm-8 main-section2" id="MiTabla" role=LisTabla>
+                  <ul class="nav nav-tabs justify-content-end">
+                      <li class="nav-item">
+                        <a class="nav-link active" id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"> Docentes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="form-tab" data-toggle="tab" href="#form" role="tab" aria-controls="form" aria-selected="true"> Registrar Docentes</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" id="form-tab" data-toggle="tab" href="#form2" role="tab" aria-controls="form" aria-selected="true">Asignar curso a Docente</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link " id="list-tab" data-toggle="tab" href="#list2" role="tab" aria-controls="list" aria-selected="true"> Cursos Asignados</a>
+                        </li>
+                  </ul>
+                  <div class="tab-content" id="ContenidoTabla">
+                    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4>Lista de Docentes</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table id="userList" class="table table-bordered table-hover table-striped">
+                              <thead class="thead-light">
+                                <tr>
+                                   
+                                  
+                                  <th scope="col">Nombre</th>
+                                  <th scope="col">Apellido</th>
+                                  <th scope="col">tipo de identificacion</th>
+                                  <th scope="col">Numero de identificacion</th>
+                                  <th scope="col">E-mail</th>
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr v-for="docente in docentes">
+                                  
+                                  <td> {{docente.nombre}}  </td>
+                                  <td> {{docente.apellido}}  </td>
+                                  <td> {{docente.tipo_identificacion}} </td>
+                                  <td> {{docente.numero_identificacion}}  </td>
+                                  <td>   {{docente.email}}     </td>
+                                  <td>
+                                    <a href="#" ><i  class="fas fa-edit"></i></a> | <a href="#" @click="ObtenerDocente(docente.numero_identificacion)"><i class="fas fa-user-times"></i></a>
+                                  </td>
+                                </tr>
+                                
+                                 
+                              </tbody>
+                            </table>
+                          </div>
+     
+                        </div>
+      
+                      </div>
+      
+                    </div>
+
+                    <div class="tab-pane fade show " id="list2" role="tabpanel" aria-labelledby="list-tab">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4>Cursos</h4>
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table id="userList" class="table table-bordered table-hover table-striped">
+                                <thead class="thead-light">
+                                  <tr>
+                                     
+                                    
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Materia</th>
+                                    <th scope="col">Grado</th>
+                                    <th scope="col">Grupo</th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr v-for="profesor in profesorgradomateria">
+                                    
+                                    <td> {{profesor.nombre}}  </td>
+                                    <td> {{profesor.nombre_materia}}  </td>
+                                    <td> {{profesor.nombre_grado}} </td>
+                                    <td> {{profesor.nombre_grupo}}  </td>
+                                     
+                                    <td>
+                                 
+                                      <a href="#"><i  class="fas fa-edit"></i></a> | <a href="#"><i class="fas fa-user-times"></i></a>
+                                    </td>
+                                  </tr>
+                                  
+                                   
+                                </tbody>
+                              </table>
+                            </div>
+       
+                          </div>
+        
+                        </div>
+        
+                      </div>
+
+                    <div class="tab-pane fade" id="form2" role="tabpanel" aria-labelledby="form-tab">
+                        <div class="card">
+                          <div class="card-header">
+                            <h4>Asignar </h4>
+                          </div>
+                          <div class="card-body">
+                            <form   @submit="ProfesorMateriaGrupo"class="form" role="form" autocomplete="off">
+                                <div class="form-group row">
+                                    <label class="col-lg-3 col-form-label form-control-label">Materias</label>
+                                    <div class="col-lg-9">
+                                        <select  v-model="materiaseleccion"  @change="ListarDocentesMaterias"    >
+                                             <option v-for="materia in materias"     v-bind:value="  materia.id  "  >
+
+                                              {{materia.nombre_materia}} 
+                                             </option>
+                                             
+                                          </select>
+                                        
+                                    </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label class="col-lg-3 col-form-label form-control-label">Docente</label>
+                                      <div class="col-lg-9">
+                                          <select v-model="docenteseleccion"   >
+                                            <option v-for="docente in docentesmaterias" v-bind:value="docente.id"   >
+                                   {{docente.nombre}} {{docente.apellido}}
+                                             </option>
+                                            </select>
+                                          
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label class="col-lg-3 col-form-label form-control-label">Eliga Salon</label>
+                                      <div class="col-lg-9">
+                                          <select  v-model="gradoseleccion"   >
+                                            <option  v-for="grado in grados" v-bind:value="grado.id" >
+                                           Curso de grado: {{grado.nombre_grado}}  -grupo: {{grado.nombre_grupo}}
+                                
+                                             </option>
+                                            </select>
+                                          
+                                      </div>
+                                    </div>
+                              
+        
+                              
+                              <div class="form-group2 row"> <!--Este lo coloque diferente por un problema que tuve con el-->
+                                <div class="col-lg-12 text-center">
+                                  <input type="reset" class="btn btn-secondary" value="Cancelar">
+                                  <input type="submit" class="btn btn-primary"	value="Guardar cambios">
+                                </div>
+                              </div>
+                            </form>
+        
+                          </div>
+         
+                        </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="form" role="tabpanel" aria-labelledby="form-tab">
+                          <div class="card">
+                            <div class="card-header">
+                              <h4>Asignar </h4>
+                            </div>
+                            <div class="card-body">
+                                <form  @submit="Registrar"class="form" role="form" autocomplete="off">
+
+                                    <div   class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Tipo de identificacion</label>
+                                        <div class="col-lg-9">
+                                            <select   v-model="tipo_identificacion"    >
+                
+                                              
+                                              <option value ="2">C.C</option>
+                                              <option value ="3">T.I</option>
+                                              <option value ="4">C.E</option>
+                                              </select>
+                                         
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                          <label class="col-lg-3 col-form-label form-control-label">Numero de identificacion</label>
+                                          <div class="col-lg-9">
+                                            <input class="form-control" type="text"v-model="n_identificacion">
+                                          </div>
+                                        </div>
+                                    <div class="form-group row">
+                                      <label class="col-lg-3 col-form-label form-control-label">Nombre</label>
+                                      <div class="col-lg-9">
+                                        <input class="form-control" type="text"v-model="nombre">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label class="col-lg-3 col-form-label form-control-label">Apellido</label>
+                                      <div class="col-lg-9">
+                                        <input class="form-control" type="text"v-model="apellido">
+                                      </div>
+                                    </div>
+                                     
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Correo</label>
+                                        <div class="col-lg-9">
+                                          <input class="form-control" type="email"v-model="email">
+                                        </div>
+                                      </div>
+                                    <div class="form-group row">
+                                      <label class="col-lg-3 col-form-label form-control-label">Contraseña</label>
+                                      <div class="col-lg-9">
+                                        <input class="form-control" type="password"v-model="contraseña">
+                                      </div>
+                                    </div>
+                                     
+                                    <div class="form-group2 row"> <!--Este lo coloque diferente por un problema que tuve con el-->
+                                      <div class="col-lg-12 text-center">
+                                        <input type="reset" class="btn btn-secondary" value="Cancelar">
+                                        <input type="submit" class="btn btn-primary"	value="Guardar cambios">
+                                      </div>
+                                    </div>
+                                  </form>
+          
+                            </div>
+           
+                          </div>
+                        </div>
+
+
+                  </div>
+</div>
+     
+    
+
+          </div>
+         
+            
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="js/bootstrap.min.js"></script>
+       
+      
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="js/vue.js"></script>
+      <script src="js/CrudDocentes.js"></script>
+    
+    
+  </body>
+</html>

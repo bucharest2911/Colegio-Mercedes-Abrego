@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <title>solicitar cambio enviado</title>
+  </head>
+  <body>
+<!-- template for the modal component -->
+<script type="text/x-template" id="modal-template">
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+
+          <div class="modal-header">
+            <slot name="header">
+              default header
+            </slot>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">
+            Enviado con exito
+            </slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              default footer
+              <button class="modal-default-button" @click="$emit('close')">
+                OK
+              </button>
+            </slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</script>
+
+    <div id="actividad">
+      <p> {{materiaseleccion}} </p>
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-0 bg-dark shadow-sm">
+          <h5 class="my-0 font-weight-normal">
+            <img src="Imagenes/LogoEscudo.png" alt="" style="width:60px; margin: -10px 0 -10px -5px;">
+          </h5>
+          <nav class="my-2 my-md-0 mr-md-3 mr-md-auto">
+            <a class="p-2 text-white" href="index.html">Inicio</a>
+          </nav>
+          <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-white" href="#">Eventos</a>
+            <!--<a class="p-2 text-white" href="#">Tareas</a>-->
+            <a class="p-2 text-white" href="#">Informacion</a>
+            <!--¿<a class="p-2 text-white usuario">Aqui va el nombre de usuario</a>-->
+          </nav>
+          <a class="btn btn-outline-primary" @click="CerrarSesion" href="login.html">Cerrar sesion</a>
+        </div>
+        <!--Barra inferior-->
+        <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-0 shadow-sm" style="background: rgba(39, 151, 80, 0.6)">
+          <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-white" style="font-weight: 600;" href="#">Nueva tarea</a>
+          </nav>
+          <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-white" style="font-weight: 600;" href="#">Ver tareas</a>
+          </nav>
+          <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-white" style="font-weight: 600;" href="#">Mensajes</a>
+          </nav>
+        </div>
+    
+        <div class="FormularioActividad" style="margin: auto; width: 70%; height: auto; margin-top: 20px">
+          <div class="w3-card-4">
+            <div class="w3-container w3-green">
+              <h2 style="text-align: center;">Nueva actividad</h2>
+            </div>
+           
+
+              <form @submit="GuardarActividad">
+                  <p>
+                      <label class="w3-text-brown" style="margin-top: 10px; margin-bottom: -10px;"><b>Materia</b></label>
+                      <br></br>
+                      <select class="w3-select col-8" name="option" style="margin-top: -20px;"   @change=" ListarSalon" v-model="materiaseleccion">
+                        <option v-for="materia in materias" v-bind:value="materia.id"  >
+      
+                          {{materia.nombre_materia}}
+                        </option>
+                       
+                       
+                      </select>
+                    </p>
+                    <p>
+                      <label class="w3-text-brown" style="margin-top: 10px; margin-bottom: -10px;"><b>Grado</b></label>
+                      <br></br>
+                      <select class="w3-select col-8" name="option" style="margin-top: -20px;"v-model="gradoseleccion">
+                        <option v-for="grado in grados" v-bind:value="grado.id">
+      
+                        curso:    {{grado.nombre_grado}} grupo: {{grado.nombre_grupo}}
+      
+                        </option>
+                         
+                      </select>
+                    </p>
+                    <p>
+                      <label class="w3-text-brown" style="margin-top: 10px; margin-bottom: -10px;"><b>Nombre</b></label>
+                      <br></br>
+                      <input class="form-control" type="text"v-model="nombreactividad">
+                    </p>
+                    <p>
+                      <label class="w3-text-brown" style="margin-top: 10px; margin-bottom: -10px;"><b>Detalles de actividad</b></label>
+                    </p>
+                    <textarea class="col-8" rows="5" cols="50" style="margin-top: -10px; margin-bottom: 10px; margin-left: 10px;"v-model="detalle"></textarea>
+                    <p>
+                     
+                     
+          
+                    <p class="col-6" style="padding:15px; margin-top: 20px;">
+                      <button class="w3-btn w3-green">Enviar</button>
+                      <button  type="submit"class="w3-btn w3-green">Guardar </button>
+                      <button  type="reset"class="w3-btn w3-green">Cancelar </button>
+                    </p>
+                     
+              </form>
+            
+               
+            </div>
+          </div>
+          <div class="eventlist m-y-1" style="margin: auto; width: 70%; height: auto; margin-top: 20px; margin-bottom:20px;">
+            <div data-type="event">
+              <div class="card">
+                <div class="box card-header clearfix p-y-1" style="background: #41B24E">
+                  <div class="commands pull-xs-right" style="color:#fff;  float: right; margin-left: 30px;">
+                    <a href="#" data-action="delete">Eliminar</a>
+                    <a href="#" data-action="edit">Editar</a>
+                  </div>
+                  <h3 class="name d-inline-block" style="color:#fff;">Materia</h3>
+                  <span class="date pull-xs-right m-r-1" style="float: right; color:#fff;">10:34 <strong>»</strong> <a href="#">Lunes, </a>02:49</span>
+                </div>
+                <div class="description card-block calendar_event_user">
+                <p></p><p style="color: #000; margin-left:20px;">Detalles de la actividad</p><p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!--Mensaje de los padres-->
+    
+          <div class="eventlist m-y-1" style="margin: auto; width: 70%; height: auto; margin-top: 20px; margin-bottom:20px;">
+            <div data-type="event">
+              <div class="card">
+                <div class="box card-header clearfix p-y-1" style="background: #41B24E">
+                  <!--<div class="commands pull-xs-right" style="color:#fff;  float: right; margin-left: 30px;">
+                    <a href="#" data-action="delete">Eliminar</a>
+                    <a href="#" data-action="edit">Editar</a>
+                  </div>-->
+                  <h3 class="name d-inline-block" style="color:#fff;">Materia</h3>
+                  <span class="date pull-xs-right m-r-1" style="float: right; color:#fff;">10:34 <strong>»</strong> <a href="#">Lunes, </a>02:49</span>
+                </div>
+                <div class="description card-block calendar_event_user">
+                <p class="GradUser" style="color: #000; margin-top: 10px; margin-right: 20px; float: right">6A</p>  <p class="userEstudiante" style="color: #000; margin-top: 10px; margin-right: 20px; float: right">Usuario - Estudiante</p>  <p style="color: #000; margin-left:22px;margin-top: 35px;">Detalles actividad</p><p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <modal v-if="showModal" @close="showModal = false">
+    <!--
+      you can use custom content here to overwrite
+      default content
+    -->
+    <h3 slot="header">custom header</h3>
+  </modal>
+          
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/Actividad.js"></script>
+  </body>
+</html>

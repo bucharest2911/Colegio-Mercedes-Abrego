@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+body{
+  background: url(../Imagenes/Fondo2.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+.escudo img{
+  margin-top: 0;
+}
+.navbar-brand img{
+  margin: -10px 0 -10px -5px;
+}
+
+.Imagen-usuario{
+  margin-top: -70px;
+  margin-bottom: 35px;
+}
+
+.Imagen-usuario img{
+  width: 150px;
+  height: 150px;
+  border-radius:150px;
+  box-shadow: 0px 0px 2px #005026;
+
+}
+
+.main-section{
+    margin:0 auto;
+    margin-top:25%;
+    padding: 0;
+}
+
+.modal-content{
+    background-color: #00200F;
+    opacity: .85;
+    padding: 0 20px;
+    box-shadow: 0px 0px 3px #005026;
+}
+
+.form-group::before{
+    font-family: "Font Awesome\ 5 Free";
+    position: absolute;
+    left: 28px;
+    font-size: 22px;
+    padding-top:4px;
+    color: #0FB133;
+}
+
+.form-group#Nombre-usuario::before{
+    content: "\f007";
+}
+
+.form-group#Contrasena-usuario::before{
+    content: "\f023";
+}
+
+.form-group#Correo::before{
+    content: "\f0e0";
+}
+
+button{
+    width: 60%;
+    margin: 5px 0 15px;
+}
+
+button a{
+  width: 60%;
+  color: #fff;
+  text-decoration:none;
+}
+
+.form-group input{
+    height: 42px;
+    font-size: 18px;
+    border:0;
+    padding-left: 54px;
+    border-radius: 5px;
+}
+
+.forgot a{
+    color: white;
+}
+
+/* Registro*/
+h2{
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+p{
+  color: #fff;
+  margin-top: -5px;
+  line-height: 120%;
+  font-size: 15px;
+}
+
+.none a{
+  color: #0FB133;
+}
+
+/*Crud*/
+.main-section2{
+    margin:0 auto;
+    margin-top:5%;
+}
+.card{
+	opacity: .95;
+}
+.card-body{
+    background-color: #00200F;
+    box-shadow: 0px 0px 3px #005026;
+}
+
+label{
+	font-weight: bold;
+}
+
+.nav-tabs .nav-item a:not(.active){
+	background-color: #d1d3d6;
+}
+
+.nav-tabs{
+	border-bottom:0px;
+}
+
+td{
+  color: #fff;
+}
+th{
+  color: #fff;
+}
+
+.form-control-label{
+  color: #fff;
+}
